@@ -1,0 +1,1 @@
+export * from "./excpetions/rpc-exception.filter"

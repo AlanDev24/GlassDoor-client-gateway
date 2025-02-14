@@ -1,4 +1,15 @@
-import { IsEmail, IsPhoneNumber, IsString, IsStrongPassword, MinLength } from 'class-validator';
+import {
+  ArrayNotEmpty,
+  IsArray,
+  IsEmail,
+  IsEnum,
+  IsOptional,
+  IsPhoneNumber,
+  IsString,
+  IsStrongPassword,
+  MinLength,
+} from 'class-validator';
+import { ValidRoles } from '../../users/enums';
 
 export class RegisterUserDto {
   @IsString()
@@ -7,14 +18,11 @@ export class RegisterUserDto {
   @IsEmail()
   email: string;
 
-  @IsPhoneNumber('MX',
-    {
-      message:
-        'Insert a valid phone number.',
-    },
-  )
+  @IsPhoneNumber('MX', {
+    message: 'Insert a valid phone number.',
+  })
   @MinLength(10)
-  phoneNumber: string
+  phoneNumber: string;
 
   @IsStrongPassword(
     {
@@ -30,4 +38,10 @@ export class RegisterUserDto {
     },
   )
   password: string;
+
+  @IsArray()
+  @IsOptional()
+  @ArrayNotEmpty()
+  @IsEnum(ValidRoles, { each: true })
+  roles?: ValidRoles[];
 }

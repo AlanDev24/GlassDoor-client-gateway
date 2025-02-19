@@ -3,7 +3,6 @@ import { UsersController } from './users.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { CLIENTS_SERVICE_GATEWAY } from 'src/config';
 import { AuthModule } from 'src/auth/auth.module';
-import { PassportModule } from '@nestjs/passport';
 
 @Module({
   controllers: [UsersController],
